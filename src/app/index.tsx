@@ -1,15 +1,9 @@
-import {View, Text, StyleSheet} from "react-native"
+import {View, Text} from "react-native"
 export default function Home(){
     return(
-        <View style={styles.container}>
-            <Text>Olá mundo</Text>
+        <View className="bg-slate-900 flex-1">
+            <Text className="text-white">Olá mundo</Text>
         </View>
     )
 }
 
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        backgroundColor:"red"
-    }
-})
