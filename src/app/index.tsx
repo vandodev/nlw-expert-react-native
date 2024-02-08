@@ -28,7 +28,7 @@ export default function Home(){
     }
 
     return(
-        <View className="bg-slate-900 pt-8 flex-1 border-white">
+        <View className="bg-slate-900 pt-8 flex-1">
             <Header title="Faça seu pedido" cartQuantityItems={5}/> 
 
         <FlatList
