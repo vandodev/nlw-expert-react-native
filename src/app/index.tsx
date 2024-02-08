@@ -4,6 +4,7 @@ import { Header } from "@/components/header"
 import {View,Text, FlatList, SectionList} from "react-native"
 import { CATEGORIES, MENU} from '@/utils/data/products';
 import { Link } from 'expo-router';
+import { Product } from '@/components/product';
 
 export default function Home(){
     const [category, setCategory] = useState(CATEGORIES[0]);
@@ -39,7 +40,7 @@ export default function Home(){
             keyExtractor={(item) => item.id}
             stickySectionHeadersEnabled={false}
             renderItem={({ item }) => (
-               <Text className='text-white'>{item.title}</Text>
+               <Product data={item} />
             )} 
             renderSectionHeader={({ section: { title } }) => (
                 <Text className="text-xl text-white font-heading mt-8 mb-3">{title}</Text>
