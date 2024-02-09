@@ -5,10 +5,17 @@ import {View,Text, FlatList, SectionList} from "react-native"
 import { CATEGORIES, MENU} from '@/utils/data/products';
 import { Link } from 'expo-router';
 import { Product } from '@/components/product';
+import { useCartStore } from '@/stores/cart-store';
 
 export default function Home(){
+    const cartStore = useCartStore();
     const [category, setCategory] = useState(CATEGORIES[0]);
     const sectionListRef = useRef<SectionList>(null);
+
+    const cartQuantityItems = cartStore.products.reduce(
+        (total, product) => total + product.quantity,
+        0,
+    );
 
 
     function handleCategorySelect(selectedCategory: string) {
@@ -29,7 +36,7 @@ export default function Home(){
 
     return(
         <View className="bg-slate-900 pt-8 flex-1">
-            <Header title="Faça seu pedido" cartQuantityItems={5}/> 
+            <Header title="Faça seu pedido" cartQuantityItems={cartQuantityItems} /> 
 
         <FlatList
             data={CATEGORIES}

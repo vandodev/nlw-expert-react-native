@@ -1,5 +1,5 @@
 import { Image, Text, View } from 'react-native';
-import { useLocalSearchParams, useNavigation } from 'expo-router';
+import { Redirect, useLocalSearchParams, useNavigation } from 'expo-router';
 import { PRODUCTS } from '@/utils/data/products';
 import { formatCurrency } from '@/utils/functions/format-currency';
 import { Button } from '@/components/button';
@@ -24,6 +24,9 @@ export default function Product() {
         }        
     }
     
+    if (!product) {
+        return <Redirect href="/" />
+    }
     
     return (        
         <View className="flex-1">
