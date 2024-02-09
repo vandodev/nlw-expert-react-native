@@ -14,8 +14,9 @@ export default function Product() {
     const navigation = useNavigation()
 
     const { id } = useLocalSearchParams();
-    const product = PRODUCTS.find((product) => product.id === id);
-    console.log(cartStore.products)
+    // const product = PRODUCTS.filter((product) => product.id === id)[0];
+    const product = PRODUCTS.find((product) => product.id === id);//product fica undefined
+    // console.log(cartStore.products)
 
     function handleAddToCart() {
         if (product) {
@@ -24,6 +25,7 @@ export default function Product() {
         }        
     }
     
+    //evita que o product fique undefined
     if (!product) {
         return <Redirect href="/" />
     }
