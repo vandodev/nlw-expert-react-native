@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
+import * as cartInMemory from './helpers/cart-in-memory';
 
 import { ProductProps } from '@/utils/data/products';
 
@@ -14,5 +15,10 @@ type StateProps = {
 
 export const useCartStore = create<StateProps>((set) => ({
       products: [],
-      add:() =>[],
+
+      add: (product: ProductProps) =>
+        set((state) => ({
+          products: cartInMemory.add(state.products, product),
+        })),
+
 }));
