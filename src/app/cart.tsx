@@ -3,10 +3,20 @@ import { View, Text } from "react-native";
 
 import { Product } from '@/components/product';
 import { ProductCartProps, useCartStore } from '@/stores/cart-store';
+import { formatCurrency } from "@/utils/functions/format-currency";
 
 
 export default function Cart() {
     const cartStore = useCartStore();
+
+    const total = formatCurrency(
+      cartStore.products.reduce(
+        (total, product) => total + product.price * product.quantity,
+        0,
+      ),
+    );
+
+    
     return(
         <View className="flex-1 mt-8">
             <Header title="Seu carrinho" />        
@@ -25,9 +35,14 @@ export default function Cart() {
               <Text className="font-body text-slate-400 text-center my-8">
                 Seu carrinho está vazio.
               </Text>
-            )}
-                      
-          </View>      
+            )}                      
+          </View>   
+
+          <View className="flex-row gap-2 items-center mt-5 mb-4">
+              <Text className="text-white text-xl font-subtitle">Total:</Text>
+              <Text className="text-lime-400 text-2xl font-heading">{total}</Text>
+          </View>
+   
 
         </View>
     )
